@@ -1,6 +1,6 @@
 {
   "name": "Chil-plataforma-ESP",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Adaptador de placas ESP con framework Arduino para la herramienta de pruebas Chil",
   "keywords": "chil, tests, test, esp32, esp8266, pruebas, bdd, tdd, acceptance, gherkin",
   "repository": {
