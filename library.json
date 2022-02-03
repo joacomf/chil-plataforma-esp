@@ -1,0 +1,41 @@
+{
+  "name": "Chil-plataforma-ESP",
+  "version": "0.0.0",
+  "description": "Adaptador de placas ESP con framework Arduino para la herramienta de pruebas Chil",
+  "keywords": "chil, tests, test, esp32, esp8266, pruebas, bdd, tdd, acceptance, gherkin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joacomf/chil-plataforma-esp.git"
+  },
+  "authors": [
+    {
+      "name": "Joaquin Moreno",
+      "email": "joaquinamf@gmail.com",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://joacomf.github.io/chil/",
+  "dependencies": {
+    "joacomf/Chil": "*"
+  },
+  "frameworks": "*",
+  "platforms": "*",
+  "export": {
+    "include": [
+      "src/*",
+      "README.md",
+      "version"
+    ],
+    "exclude": [
+      ".github",
+      ".pio",
+      ".vscode",
+      "documentacion",
+      "ejemplos",
+      "herramientas",
+      "scripts",
+      "tests"
+    ]
+  }
+}
