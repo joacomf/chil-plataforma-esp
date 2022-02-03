@@ -6,15 +6,9 @@ add_executable(arduino
         src/main.cpp
         src/PlataformaArduino.cpp
         test/PlataformaArduinoTest.cpp
-
-        ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/Plataforma.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/PuntoDeEntrada.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/PuntoDeEntrada.h
-        )
-
-include(CMakeListsPrivate.txt)
+)
 
 include_directories(
         "${CMAKE_CURRENT_SOURCE_DIR}/test"
         "${CMAKE_CURRENT_SOURCE_DIR}/test/caracteristicas"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces")
+)

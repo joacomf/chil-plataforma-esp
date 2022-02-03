@@ -7,8 +7,8 @@
 #include <ESPAsyncWebServer.h>
 #include <DNSServer.h>
 
-#include <Plataforma.h>
-#include <PuntoDeEntrada.h>
+#include <interfaces/Plataforma.h>
+#include <interfaces/PuntoDeEntrada.h>
 
 #define PLATAFORMA_ARDUINO new PlataformaArduino()
 
