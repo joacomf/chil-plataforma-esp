@@ -4,7 +4,7 @@ on: [push]
 
 env:
   BUILD_TYPE: Release
-  NOMBRE_RELEASE: chil-plataforma-esp
+  NOMBRE_RELEASE: Chil-plataforma-ESP
 
 jobs:
   construccion:
@@ -112,8 +112,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.crear_publicacion.outputs.upload_url }}
-          asset_path: ./${NOMBRE_RELEASE}-${{ needs.versionado.outputs.version }}.tar.gz
-          asset_name: ${NOMBRE_RELEASE}-${{ needs.versionado.outputs.version }}.tar.gz
+          asset_path: ./${{ env.NOMBRE_RELEASE }}-${{ needs.versionado.outputs.version }}.tar.gz
+          asset_name: ${{ env.NOMBRE_RELEASE }}-${{ needs.versionado.outputs.version }}.tar.gz
           asset_content_type: application/gzip
 
       - uses: eregon/publish-release@v1
