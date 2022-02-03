@@ -9,3 +9,5 @@
 !.vscode/extensions.json
 
 cmake-build-debug/
+CMakeFiles/
+build/

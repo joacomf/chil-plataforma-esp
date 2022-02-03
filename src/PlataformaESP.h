@@ -10,10 +10,12 @@
 #include <interfaces/Plataforma.h>
 #include <interfaces/PuntoDeEntrada.h>
 
-#define PLATAFORMA_ARDUINO new PlataformaArduino()
+#define PLATAFORMA_ARDUINO new PlataformaESP()
+#define PLATAFORMA_ESP new PlataformaESP()
 
 
-class PlataformaArduino: public Plataforma {
+
+class PlataformaESP: public Plataforma {
 private:
     int velocidadSerial = 115200;
     bool apEncendido = false;
@@ -29,7 +31,7 @@ private:
     [[noreturn]] static void configurarServidorDNS(void *parametros);
 
 public:
-    PlataformaArduino();
+    PlataformaESP();
     void consola(const char* text) override;
     void escribir(int pin, int valor) override;
     int leer(int pin) override;

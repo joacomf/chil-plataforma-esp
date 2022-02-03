@@ -4,7 +4,7 @@ project(arduino C CXX)
 
 add_executable(arduino
         src/main.cpp
-        src/PlataformaArduino.cpp
+        src/PlataformaESP.cpp
         test/PlataformaArduinoTest.cpp
 )
 

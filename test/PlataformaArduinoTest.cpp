@@ -1,16 +1,16 @@
-#include "../src/PlataformaArduino.cpp"
-#include "../../interfaces/PuntoDeEntrada.cpp"
+#include "../src/PlataformaESP.cpp"
+#include <interfaces/PuntoDeEntrada.h>
 #include <AUnit.h>
 #include <utility>
 
 using namespace aunit;
 
-PlataformaArduino *framework;
+PlataformaESP *framework;
 int led = 2;
 
 void setup() {
     delay(1000);
-    framework = new PlataformaArduino();
+    framework = new PlataformaESP();
 }
 
 test(EntradaSalidaDigital, deberiaEncenderElLedIndicado) {

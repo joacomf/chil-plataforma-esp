@@ -1,42 +1,42 @@
-#include "PlataformaArduino.h"
+#include "PlataformaESP.h"
 
-PlataformaArduino::PlataformaArduino() {
-    Serial.begin(PlataformaArduino::velocidadSerial);
+PlataformaESP::PlataformaESP() {
+    Serial.begin(PlataformaESP::velocidadSerial);
 }
 
-void PlataformaArduino::escribir(int pin, int valor) {
+void PlataformaESP::escribir(int pin, int valor) {
     digitalWrite(pin, valor);
 }
 
-int PlataformaArduino::leer(int pin) {
+int PlataformaESP::leer(int pin) {
     return digitalRead(pin);
 }
 
-unsigned long PlataformaArduino::milisegundos() {
+unsigned long PlataformaESP::milisegundos() {
     return millis();
 }
 
-unsigned long PlataformaArduino::microsegundos() {
+unsigned long PlataformaESP::microsegundos() {
     return micros();
 }
 
-void PlataformaArduino::demorar(int milisegundos) {
+void PlataformaESP::demorar(int milisegundos) {
     delay(milisegundos);
 }
 
-void PlataformaArduino::pinEntrada(int pin) {
+void PlataformaESP::pinEntrada(int pin) {
     pinMode(pin, INPUT);
 }
 
-void PlataformaArduino::pinSalida(int pin) {
+void PlataformaESP::pinSalida(int pin) {
     pinMode(pin, OUTPUT);
 }
 
-void PlataformaArduino::consola(const char *texto) {
+void PlataformaESP::consola(const char *texto) {
     Serial.println(texto);
 }
 
-bool PlataformaArduino::crearRedWiFi(const char *nombre, const char *clave) {
+bool PlataformaESP::crearRedWiFi(const char *nombre, const char *clave) {
     this->apEncendido = WiFi.softAP(nombre, clave);
 
     if (!WiFi.config(this->ipLocal, this->sinIPDeclarada, this->sinIPDeclarada, this->ipLocal, INADDR_NONE)) {
@@ -46,23 +46,23 @@ bool PlataformaArduino::crearRedWiFi(const char *nombre, const char *clave) {
     return this->apEncendido;
 }
 
-bool PlataformaArduino::estaAPEncendido() {
+bool PlataformaESP::estaAPEncendido() {
     return this->apEncendido;
 }
 
-bool PlataformaArduino::apagarWiFi() {
+bool PlataformaESP::apagarWiFi() {
     this->apEncendido = WiFi.softAPdisconnect(true);
     return this->apEncendido;
 }
 
-void PlataformaArduino::eliminarServidorWeb() {
+void PlataformaESP::eliminarServidorWeb() {
     if (this->servidorCorriendo) {
         this->servidor->end();
         this->servidorCorriendo = false;
     }
 }
 
-void PlataformaArduino::crearServidorWeb() {
+void PlataformaESP::crearServidorWeb() {
     if (!this->servidorCorriendo) {
         this->servidor = new AsyncWebServer(80);
         this->servidor->on("/chil-ping", HTTP_GET, [](AsyncWebServerRequest *request) {
@@ -74,11 +74,11 @@ void PlataformaArduino::crearServidorWeb() {
     }
 }
 
-bool PlataformaArduino::estaServidorCorriendo() {
+bool PlataformaESP::estaServidorCorriendo() {
     return this->servidorCorriendo;
 }
 
-void PlataformaArduino::configurarPuntoDeEntrada(PuntoDeEntrada *puntoDeEntrada) {
+void PlataformaESP::configurarPuntoDeEntrada(PuntoDeEntrada *puntoDeEntrada) {
     WebRequestMethod metodoAConfigurar = HTTP_GET;
 
     if (puntoDeEntrada->obtenerMetodo() == POST) {
@@ -94,9 +94,9 @@ void PlataformaArduino::configurarPuntoDeEntrada(PuntoDeEntrada *puntoDeEntrada)
 }
 
 TaskHandle_t manejadorTareaDeConfiguracionServidorDNS = nullptr;
-void PlataformaArduino::configurarMockUrls() {
+void PlataformaESP::configurarMockUrls() {
     xTaskCreate(
-            PlataformaArduino::configurarServidorDNS,
+            PlataformaESP::configurarServidorDNS,
             "configuraDNS",
             10000,
             nullptr,
@@ -104,10 +104,10 @@ void PlataformaArduino::configurarMockUrls() {
             &manejadorTareaDeConfiguracionServidorDNS);
 }
 
-[[noreturn]] void PlataformaArduino::configurarServidorDNS(void *parametros) {
+[[noreturn]] void PlataformaESP::configurarServidorDNS(void *parametros) {
     DNSServer dnsServer;
     dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
-    dnsServer.start(PlataformaArduino::DNS_PORT, "*", WiFi.softAPIP());
+    dnsServer.start(PlataformaESP::DNS_PORT, "*", WiFi.softAPIP());
 
     while (true) {
         delay(10);
@@ -115,7 +115,7 @@ void PlataformaArduino::configurarMockUrls() {
     }
 }
 
-void PlataformaArduino::eliminarMocksUrls() {
+void PlataformaESP::eliminarMocksUrls() {
     if(manejadorTareaDeConfiguracionServidorDNS != nullptr) {
         vTaskDelete(manejadorTareaDeConfiguracionServidorDNS);
     }
