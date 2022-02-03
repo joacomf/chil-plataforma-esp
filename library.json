@@ -17,7 +17,8 @@
   "license": "MIT",
   "homepage": "https://joacomf.github.io/chil/",
   "dependencies": {
-    "joacomf/Chil": "*"
+    "joacomf/Chil": "*",
+    "me-no-dev/ESP Async WebServer": "^1.2.3"
   },
   "frameworks": "*",
   "platforms": "*",
